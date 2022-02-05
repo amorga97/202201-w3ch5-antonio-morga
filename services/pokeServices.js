@@ -1,5 +1,7 @@
-export const fetchPage = async (endpoint) => {
-    const url = `https://pokeapi.co/api/v2/pokemon/${endpoint}`;
+export const fetchPage = async (
+    endpoint = `https://pokeapi.co/api/v2/pokemon/`
+) => {
+    const url = endpoint;
     const resp = await fetch(url);
     const data = await resp.json();
     return data;

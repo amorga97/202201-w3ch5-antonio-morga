@@ -1,8 +1,8 @@
 export class Component {
     template;
 
-    renderInner(selector) {
-        document.querySelector(selector).innerHTML = this.template;
+    async renderInner(selector) {
+        document.querySelector(selector).innerHTML = await this.template;
     }
 
     async renderOuter(selector) {
