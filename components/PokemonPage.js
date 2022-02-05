@@ -1,5 +1,5 @@
 import { Component } from './component.js';
-import { fetchPage } from '../services/pokeServices.js';
+import { fetchPage, fetchPokemon } from '../services/pokeServices.js';
 import { Card } from './Card.js';
 
 export class PokemonPage extends Component {
@@ -26,13 +26,16 @@ export class PokemonPage extends Component {
         const pokemonPage = await fetchPage(endpoint);
         this.nextEndpoint = pokemonPage.next;
         this.previousEndpoint = pokemonPage.previous;
+        const lastPokemonEndpoint =
+            pokemonPage.results[pokemonPage.results.length - 1].url;
+        const lastPokemonData = await fetchPokemon(lastPokemonEndpoint);
         let template = `
             <main class="main">
                 <section class="poke-list">
                     <h2 class="poke-list__results">Results</h2>
                     <ul class="poke-list__page-menu">
                         <li><button href="" class="poke-list__page--previous">Previous Page</button></li>
-                        <li><a href="" class="poke-list__page">1</a></li>
+                        <li><a href="" class="poke-list__page">${lastPokemonData.id} of ${pokemonPage.count}</a></li>
                         <li><button href="" class="poke-list__page--next">Next Page</button></li>
                     </ul>
                     <ul class="poke-list__items">
@@ -51,7 +54,7 @@ export class PokemonPage extends Component {
                     </u>
                     <ul class="poke-list__page-menu">
                         <li><button href="" class="poke-list__page--previous">Previous Page</button></li>
-                        <li><a href="" class="poke-list__page">1</a></li>
+                        <li><a href="" class="poke-list__page">${lastPokemonData.id} of ${pokemonPage.count} </a></li>
                         <li><button id"next-button" href="" class="poke-list__page--next">Next Page</button></li>
                     </ul>
                 </section>
@@ -66,8 +69,8 @@ export class PokemonPage extends Component {
     nextButtonHandler() {
         const buttons = document.querySelectorAll('.poke-list__page--next');
         buttons.forEach((button) => {
-            button.addEventListener('click', () => {
-                this.reRender(this.selector, this.nextEndpoint);
+            button.addEventListener('click', async () => {
+                await this.reRender(this.selector, this.nextEndpoint);
             });
         });
     }
@@ -75,8 +78,8 @@ export class PokemonPage extends Component {
     previousButtonHandler() {
         const buttons = document.querySelectorAll('.poke-list__page--previous');
         buttons.forEach((button) => {
-            button.addEventListener('click', () => {
-                this.reRender(this.selector, this.previousEndpoint);
+            button.addEventListener('click', async () => {
+                await this.reRender(this.selector, this.previousEndpoint);
             });
         });
     }
