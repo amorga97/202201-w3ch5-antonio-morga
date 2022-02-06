@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import { fetchPokemon } from '../services/pokeServices.js';
-import { Component } from './component.js';
+import { Component } from './Component.js';
 
 export class Details extends Component {
     constructor(selector) {

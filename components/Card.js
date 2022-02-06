@@ -1,5 +1,5 @@
 import { fetchPokemon } from '../services/pokeServices.js';
-import { Component } from './component.js';
+import { Component } from './Component.js';
 
 export class Card extends Component {
     constructor(pokemon) {
@@ -10,7 +10,7 @@ export class Card extends Component {
     async generateTemplate(pokemon) {
         const pokemonData = await fetchPokemon(pokemon.url);
         const template = `
-            <div className="card">
+            <div class="card">
                 <a href="pages/details.html?=id${pokemonData.id}">
                         <h3 class="card__name">${pokemonData.name}</h3>
                         <img
@@ -27,8 +27,9 @@ export class Card extends Component {
                         </ul>
                 </a>
                 <div className="card__actions">
-                        <button className="card__actions-item card__catch">Catch</button>
-                        <button className="card__actions-item card__release">Release</button>
+                        <div class="card__actions-data${pokemonData.id}">${pokemon.url}</div>
+                        <button class="${pokemonData.id} card__actions-item card__catch">Catch</button>
+                        <button class="card__actions-item card__release">Release</button>
                 </div>
             </div>
         `;

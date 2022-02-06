@@ -12,7 +12,14 @@ export const releasePokemon = async (id) => {
 
 export const catchPokemon = async (object) => {
     const url = `http://localhost:3005/pokemon`;
-    const resp = fetch(url, {
+    const allDataRespose = await fetch(url);
+    const allData = await allDataRespose.json();
+    let repeats = false;
+    allData.forEach((entry) => {
+        if (entry.url === object.url) repeats = true;
+    });
+    if (repeats) return 0;
+    const resp = await fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
