@@ -34,13 +34,12 @@ export class PokemonPage extends Component {
         let template = `
             <main class="main">
                 <section class="poke-list">
-                    <h2 class="poke-list__results">Results</h2>
                     <ul class="poke-list__page-menu">
-                        <li><button href="" class="poke-list__page--previous">Previous Page</button></li>
+                        <li><button href="" class="poke-list__page--previous"><i class="fas fa-arrow-left"></i></button></li>
                         <li><a href="" class="poke-list__page">${lastPokemonData.id} of ${pokemonPage.count}</a></li>
-                        <li><button href="" class="poke-list__page--next">Next Page</button></li>
+                        <li><button href="" class="poke-list__page--next"><i class="fas fa-arrow-right"></i></button></li>
                     </ul>
-                    <ul class="poke-list__items">
+                    <div class="poke-list__items">
                 `;
 
         const cardPromises = [];
@@ -52,15 +51,6 @@ export class PokemonPage extends Component {
         ).forEach((element) => {
             template += element;
         });
-        template += `
-                    </u>
-                    <ul class="poke-list__page-menu">
-                        <li><button href="" class="poke-list__page--previous">Previous Page</button></li>
-                        <li><a href="" class="poke-list__page">${lastPokemonData.id} of ${pokemonPage.count} </a></li>
-                        <li><button id"next-button" href="" class="poke-list__page--next">Next Page</button></li>
-                    </ul>
-                </section>
-            </main>`;
         return template;
     }
 

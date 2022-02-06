@@ -24,23 +24,26 @@ export class Details extends Component {
                     previousValue.toString() + currentValue.toString()
             );
         const pokemonData = await fetchPokemon(
-            `https://pokeapi.co/api/v2/pokemon/${id}`
+            `https://pokeapi.co/api/v2/pokemon/${id}/`
         );
-        const template = `<h2 class="pokemon-details__name">${pokemonData.name}</h2>
+        const template = `
             <img src="${pokemonData.sprites.other.dream_world.front_default}" alt="" class="pokemon-details__image" />
+            
             <div class="pokemon-details__stats">
+                <h2 class="pokemon-details__name">${pokemonData.name}</h2> 
                 <p class="pokemon-details__stats-item">Type: ${pokemonData.types[0].type.name}</p>
                 <p class="pokemon-details__stats-item">${pokemonData.stats[0].stat.name}: ${pokemonData.stats[0].base_stat}</p>
                 <p class="pokemon-details__stats-item">${pokemonData.stats[1].stat.name}: ${pokemonData.stats[1].base_stat}</p>
                 <p class="pokemon-details__stats-item">${pokemonData.stats[2].stat.name}: ${pokemonData.stats[2].base_stat}</p>
-            </div>
-            <div class="pokemon-details__actions">
-            <div class="pokemon-details__url">https://pokeapi.co/api/v2/pokemon/${id}</div>
                 <button
                     class="${pokemonData.id} pokemon-details__button pokemon-details__button--catch"
                 >
                     Catch
                 </button>
+            </div>
+            <div class="pokemon-details__actions">
+            <div class="pokemon-details__url">https://pokeapi.co/api/v2/pokemon/${id}/</div>
+                
             </div>`;
         return template;
     }
