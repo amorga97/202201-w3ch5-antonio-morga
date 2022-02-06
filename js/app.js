@@ -2,6 +2,7 @@
 import { Header } from '../components/Header.js';
 import { PokemonPage } from '../components/PokemonPage.js';
 import { Details } from '../components/Details.js';
+import { CatchedPage } from '../components/Catched.js';
 
 (async () => {
     const app = async () => {
@@ -14,6 +15,10 @@ import { Details } from '../components/Details.js';
 
         case '/pages/details.html':
             new Details('.pokemon-details');
+            break;
+
+        case '/pages/catched.html':
+            new CatchedPage('.catched');
             break;
         default:
     }

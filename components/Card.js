@@ -1,17 +1,17 @@
 import { fetchPokemon } from '../services/pokeServices.js';
-import { Component } from './component.js';
+import { Component } from './Component.js';
 
 export class Card extends Component {
-    constructor(pokemon) {
+    constructor(pokemon, buttonType) {
         super();
-        this.template = this.generateTemplate(pokemon);
+        this.template = this.generateTemplate(pokemon, buttonType);
     }
 
-    async generateTemplate(pokemon) {
+    async generateTemplate(pokemon, buttonType) {
         const pokemonData = await fetchPokemon(pokemon.url);
         const template = `
-            <div className="card">
-                <a href="pages/details.html?=id${pokemonData.id}">
+            <div class="card">
+                <a href="../pages/details.html?=id${pokemonData.id}">
                         <h3 class="card__name">${pokemonData.name}</h3>
                         <img
                             src="${pokemonData.sprites.front_default}"
@@ -27,8 +27,8 @@ export class Card extends Component {
                         </ul>
                 </a>
                 <div className="card__actions">
-                        <button className="card__actions-item card__catch">Catch</button>
-                        <button className="card__actions-item card__release">Release</button>
+                        <div class="card__actions-data${pokemonData.id}">${pokemon.url}</div>
+                        <button class="${pokemonData.id} card__actions-item card__${buttonType}">${buttonType}</button>
                 </div>
             </div>
         `;

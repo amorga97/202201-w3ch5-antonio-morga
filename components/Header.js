@@ -1,4 +1,4 @@
-import { Component } from './component.js';
+import { Component } from './Component.js';
 
 export class Header extends Component {
     constructor(selector) {
@@ -13,7 +13,7 @@ export class Header extends Component {
                 <h1 class="page-title">PokeApi</h1>
                 <nav class="header__menu">
                     <li><a href="../index.html" class="header__item">Home</a></li>
-                    <li><a href="" class="header__item">My pokemons</a></li>
+                    <li><a href="../pages/catched.html" class="header__item">My pokemons</a></li>
                 </nav>
             </header>`;
         return template;

@@ -1,6 +1,7 @@
-import { Component } from './component.js';
+import { Component } from './Component.js';
 import { fetchPage, fetchPokemon } from '../services/pokeServices.js';
 import { Card } from './Card.js';
+import { catchPokemon } from '../services/localApiServices.js';
 
 export class PokemonPage extends Component {
     constructor(selector) {
@@ -20,6 +21,7 @@ export class PokemonPage extends Component {
         await this.renderOuter(selector);
         this.nextButtonHandler(selector, nextEndpoint);
         this.previousButtonHandler(selector, nextEndpoint);
+        this.catchButtonHandler();
     }
 
     async generateTemplate(endpoint) {
@@ -43,7 +45,7 @@ export class PokemonPage extends Component {
 
         const cardPromises = [];
         pokemonPage.results.forEach((result) => {
-            cardPromises.push(new Card(result).template);
+            cardPromises.push(new Card(result, 'catch').template);
         });
         await (
             await Promise.all(cardPromises)
@@ -80,6 +82,21 @@ export class PokemonPage extends Component {
         buttons.forEach((button) => {
             button.addEventListener('click', async () => {
                 await this.reRender(this.selector, this.previousEndpoint);
+            });
+        });
+    }
+
+    catchButtonHandler() {
+        const buttons = document.querySelectorAll('.card__catch');
+        buttons.forEach((button) => {
+            button.addEventListener('click', async (ev) => {
+                const buttonData = ev.target;
+                const id = buttonData.classList[0];
+                const pokemonLink = document.querySelector(
+                    `.card__actions-data${id}`
+                ).innerHTML;
+                await catchPokemon({ url: pokemonLink });
+                this.reRender(this.selector);
             });
         });
     }
