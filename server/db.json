@@ -1,3 +1,36 @@
 {
-  "pokemon": []
+  "pokemon": [
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/1/",
+      "id": 1
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/2/",
+      "id": 2
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/4/",
+      "id": 3
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/3/",
+      "id": 4
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/5/",
+      "id": 5
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/6/",
+      "id": 6
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/42/",
+      "id": 7
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/245/",
+      "id": 8
+    }
+  ]
 }

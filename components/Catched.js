@@ -26,7 +26,7 @@ export class CatchedPage extends Component {
         await (
             await Promise.all(cards)
         ).forEach((cardTemplate, index) => {
-            template += `<div className="localId">Local Id: ${allCatchedPokemons[index].id}</div>`;
+            template += `<div class="localId">Local Id: ${allCatchedPokemons[index].id}</div>`;
             template += cardTemplate;
         });
 
