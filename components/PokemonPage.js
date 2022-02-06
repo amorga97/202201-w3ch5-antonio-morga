@@ -45,7 +45,7 @@ export class PokemonPage extends Component {
 
         const cardPromises = [];
         pokemonPage.results.forEach((result) => {
-            cardPromises.push(new Card(result).template);
+            cardPromises.push(new Card(result, 'catch').template);
         });
         await (
             await Promise.all(cardPromises)
@@ -89,20 +89,15 @@ export class PokemonPage extends Component {
     catchButtonHandler() {
         const buttons = document.querySelectorAll('.card__catch');
         buttons.forEach((button) => {
-            if (button.classList[3] === 'catched') {
-                console.log('already clicked');
-            } else {
-                button.addEventListener('click', async (ev) => {
-                    const buttonData = ev.target;
-                    const id = buttonData.classList[0];
-                    const pokemonLink = document.querySelector(
-                        `.card__actions-data${id}`
-                    ).innerHTML;
-                    await catchPokemon({ url: pokemonLink });
-                    button.classList.add('catched');
-                    this.reRender(this.selector);
-                });
-            }
+            button.addEventListener('click', async (ev) => {
+                const buttonData = ev.target;
+                const id = buttonData.classList[0];
+                const pokemonLink = document.querySelector(
+                    `.card__actions-data${id}`
+                ).innerHTML;
+                await catchPokemon({ url: pokemonLink });
+                this.reRender(this.selector);
+            });
         });
     }
 }

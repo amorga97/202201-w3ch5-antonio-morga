@@ -1,4 +1,5 @@
 /* eslint-disable no-restricted-globals */
+import { catchPokemon } from '../services/localApiServices.js';
 import { fetchPokemon } from '../services/pokeServices.js';
 import { Component } from './Component.js';
 
@@ -11,6 +12,7 @@ export class Details extends Component {
     async reRender(selector) {
         this.template = await this.generateTemplate();
         await this.renderInner(selector);
+        this.catchButtonHandler();
     }
 
     async generateTemplate() {
@@ -33,18 +35,25 @@ export class Details extends Component {
                 <p class="pokemon-details__stats-item">${pokemonData.stats[2].stat.name}: ${pokemonData.stats[2].base_stat}</p>
             </div>
             <div class="pokemon-details__actions">
+            <div class="pokemon-details__url">https://pokeapi.co/api/v2/pokemon/${id}</div>
                 <button
-                    class="pokemon-details__button pokemon-details__button--catch"
+                    class="${pokemonData.id} pokemon-details__button pokemon-details__button--catch"
                 >
                     Catch
-                </button>
-                <button
-                    class="pokemon-details__button pokemon-details__button--release"
-                >
-                    Release
                 </button>
             </div>`;
         return template;
     }
+
+    async catchButtonHandler() {
+        const button = document.querySelector(
+            '.pokemon-details__button--catch'
+        );
+        button.addEventListener('click', async () => {
+            const pokemonLink = document.querySelector(
+                '.pokemon-details__url'
+            ).innerHTML;
+            await catchPokemon({ url: pokemonLink });
+        });
+    }
 }
-// /idNo#*#/

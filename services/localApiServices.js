@@ -1,6 +1,6 @@
 export const releasePokemon = async (id) => {
     const url = `http://localhost:3005/pokemon/${id}`;
-    const resp = fetch(url, {
+    const resp = await fetch(url, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
@@ -26,6 +26,12 @@ export const catchPokemon = async (object) => {
         },
         body: JSON.stringify(object),
     });
+    const data = await resp.json();
+    return data;
+};
+
+export const getAllCatched = async () => {
+    const resp = await fetch(`http://localhost:3005/pokemon`);
     const data = await resp.json();
     return data;
 };
