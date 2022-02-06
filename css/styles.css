@@ -147,4 +147,26 @@ button {
   visibility: visible;
 }
 
+.pokemon-details {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 100px;
+}
+.pokemon-details__url {
+  display: none;
+}
+.pokemon-details__stats {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #ececec;
+}
+.pokemon-details__button {
+  font-size: 2rem;
+  background-color: #feca30;
+  border-radius: 10px;
+  padding: 10px 0;
+}
+
 /*# sourceMappingURL=styles.css.map */

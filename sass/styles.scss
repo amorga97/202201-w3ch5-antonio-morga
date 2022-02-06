@@ -100,7 +100,6 @@ button {
 .card {
     margin: 30px;
     display: flex;
-    // flex-direction: ;
     justify-content: center;
     align-items: center;
     transition: ease-in-out 200ms;
@@ -155,4 +154,29 @@ button {
 }
 .card:hover .card__stats {
     visibility: visible;
+}
+
+.pokemon-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+
+    &__url {
+        display: none;
+    }
+
+    &__stats {
+        font-size: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        color: rgb(236, 236, 236);
+    }
+
+    &__button {
+        font-size: 2rem;
+        background-color: rgb(254, 202, 48);
+        border-radius: 10px;
+        padding: 10px 0;
+    }
 }
