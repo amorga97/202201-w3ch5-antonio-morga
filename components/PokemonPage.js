@@ -86,7 +86,6 @@ export class PokemonPage extends Component {
                     `.card__actions-data${id}`
                 ).innerHTML;
                 await catchPokemon({ url: pokemonLink });
-                this.reRender(this.selector);
             });
         });
     }
